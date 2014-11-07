@@ -1,17 +1,25 @@
 package com.example.michael.agris_clanky_semestralka;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements ListFragment.OnFragmentInteractionListener,DetailsFragment.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ListFragment listFragment=ListFragment.newInstance();
+        if (savedInstanceState == null) {
+            getFragmentManager().beginTransaction()
+                    .add(R.id.container, listFragment)
+                    .commit();
+        }
     }
 
 
@@ -35,5 +43,10 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
